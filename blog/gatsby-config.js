@@ -1,3 +1,6 @@
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`
+})
 
 module.exports = {
   siteMetadata: {
@@ -12,13 +15,15 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-image`,
+  
+    
     
 
     {
       resolve:`gatsby-source-contentful`,
       options: {
-        spaceId: `jo7xrzmmbayp`,
-        accessToken: `ry323X37eq2hU7r3q_7i8zFXfxOOCbRRJ-v3nwemJ60`
+        spaceId: `${process.env.SPACE_ID}`,
+        accessToken: `${process.env.ACCESS_TOKEN}`
       }
     },
 
@@ -29,6 +34,7 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    `gatsby-transformer-remark`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
